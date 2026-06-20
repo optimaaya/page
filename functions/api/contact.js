@@ -1,14 +1,11 @@
-cat > functions/api/contact.js << 'EOF'
 export async function onRequestPost(context) {
   const { request } = context;
   
   try {
-    // Try to parse as JSON first (for JavaScript submissions)
     let data;
     try {
       data = await request.json();
     } catch {
-      // If that fails, try formData (for HTML form submissions)
       const formData = await request.formData();
       data = {
         name: formData.get('name') || '',
@@ -24,7 +21,6 @@ export async function onRequestPost(context) {
     
     console.log('📩 Form submission received:', { name, email, company, service, budget, message });
     
-    // Return success response
     return new Response(
       JSON.stringify({ 
         success: true,
@@ -53,4 +49,3 @@ export async function onRequestPost(context) {
     );
   }
 }
-EOF
