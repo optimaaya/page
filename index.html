@@ -215,7 +215,7 @@
           </div>
         </div>
 
-        <blockquote class="reveal">“If AI recommends your competitors instead of your brand, <em>you're already losing future customers.</em>”</blockquote>
+        <blockquote class="reveal">"If AI recommends your competitors instead of your brand, <em>you're already losing future customers.</em>"</blockquote>
       </div>
     </section>
 
@@ -279,16 +279,16 @@
           <p>Let's build the marketing system that turns attention into measurable, durable growth.</p>
           <div class="contact-note"><i>✦</i><span><strong>Strategy call, not a sales pitch.</strong><br>Tell us where you want to go. We'll bring perspective.</span></div>
         </div>
-        <!-- FIXED: Added method="POST" -->
-        <form class="contact-form glass" id="contactForm" method="POST" data-static-form-name="contact">
+        <!-- UPDATED FORM WITH MAILTO: -->
+        <form class="contact-form glass" id="contactForm">
           <div class="field-row">
-            <label><span>Your name *</span><input name="name" type="text" required autocomplete="name" placeholder="Your name"></label>
-            <label><span>Work email *</span><input name="email" type="email" required autocomplete="email" placeholder="you@company.com"></label>
+            <label><span>Your name *</span><input id="name" name="name" type="text" required autocomplete="name" placeholder="Your name"></label>
+            <label><span>Work email *</span><input id="email" name="email" type="email" required autocomplete="email" placeholder="you@company.com"></label>
           </div>
           <div class="field-row">
-            <label><span>Company</span><input name="company" type="text" autocomplete="organization" placeholder="Brand / company"></label>
+            <label><span>Company</span><input id="company" name="company" type="text" autocomplete="organization" placeholder="Brand / company"></label>
             <label><span>Primary need</span>
-              <select name="service">
+              <select id="service" name="service">
                 <option value="">Choose a service</option>
                 <option>Performance Marketing</option>
                 <option>Influencer Campaigns</option>
@@ -300,7 +300,7 @@
             </label>
           </div>
           <label><span>Monthly growth budget</span>
-            <select name="budget">
+            <select id="budget" name="budget">
               <option value="">Choose a range</option>
               <option>Under ₹1L</option>
               <option>₹1L – ₹3L</option>
@@ -309,13 +309,12 @@
             </select>
           </label>
           <label><span>What's the opportunity?</span>
-            <textarea name="message" rows="3" placeholder="A little context helps us make the first call count."></textarea>
+            <textarea id="message" name="message" rows="3" placeholder="A little context helps us make the first call count."></textarea>
           </label>
           <button class="button button-primary form-submit" type="submit">
             <span class="submit-label">Contact OPTIMAAYA</span>
             <span class="submit-arrow">↗</span>
           </button>
-          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
         </form>
       </div>
     </section>
