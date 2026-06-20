@@ -27,25 +27,78 @@
   <div class="cursor-glow" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header" id="top">
-    <nav class="nav shell" aria-label="Main navigation">
-      <a class="brand" href="#top" aria-label="OPTIMAAYA home">
-        <span class="brand-mark"><i></i><i></i></span>
-        <span>OPTIMAAYA</span>
-      </a>
-      <div class="nav-links" id="navLinks">
-        <a href="#about">About</a>
-        <a class="overview-link js-overview" href="/overview" aria-haspopup="dialog"><span class="overview-arrow" aria-hidden="true">↷</span>Overview</a>
-        <a href="#services">Services</a>
-        <a href="#ai-search">AI Search</a>
-        <a href="#process">Process</a>
+<header class="site-header" id="top">
+  <nav class="nav shell" aria-label="Main navigation">
+    <a class="brand" href="#top" aria-label="OPTIMAAYA home">
+      <span class="brand-mark"><i></i><i></i></span>
+      <span>OPTIMAAYA</span>
+    </a>
+    
+    <!-- Updated Navigation with Dropdowns -->
+    <div class="nav-links" id="navLinks">
+      <!-- About Dropdown -->
+      <div class="nav-dropdown">
+        <a href="#about" class="nav-link">About ▾</a>
+        <div class="dropdown-content">
+          <a href="#about">Who We Are</a>
+          <a href="#about">Our Mission</a>
+          <a href="#about">Team</a>
+        </div>
       </div>
-      <a class="button button-small nav-cta" href="#contact">Let's talk <span>↗</span></a>
-      <button class="menu-toggle" aria-label="Toggle menu" aria-controls="navLinks" aria-expanded="false">
-        <span></span><span></span>
-      </button>
-    </nav>
-  </header>
+      
+      <!-- Overview Dropdown -->
+      <div class="nav-dropdown">
+        <a href="#" class="nav-link overview-link js-overview">Overview ▾</a>
+        <div class="dropdown-content">
+          <a href="#" class="js-overview">Portfolio</a>
+          <a href="#" class="js-overview">Case Studies</a>
+          <a href="#" class="js-overview">Results</a>
+        </div>
+      </div>
+      
+      <!-- Services Dropdown -->
+      <div class="nav-dropdown">
+        <a href="#services" class="nav-link">Services ▾</a>
+        <div class="dropdown-content">
+          <a href="#services">Performance Marketing</a>
+          <a href="#services">Influencer Campaigns</a>
+          <a href="#services">SEO / AEO / GEO</a>
+          <a href="#services">Brand Strategy</a>
+          <a href="#services">CRM & Automation</a>
+          <a href="#services">Analytics & Tracking</a>
+          <a href="#services">Creative Direction</a>
+        </div>
+      </div>
+      
+      <!-- AI Search Dropdown -->
+      <div class="nav-dropdown">
+        <a href="#ai-search" class="nav-link">AI Search ▾</a>
+        <div class="dropdown-content">
+          <a href="#ai-search">AEO & GEO Audits</a>
+          <a href="#ai-search">Entity SEO</a>
+          <a href="#ai-search">Knowledge Graph</a>
+          <a href="#ai-search">AI Citation Readiness</a>
+        </div>
+      </div>
+      
+      <!-- Process Dropdown -->
+      <div class="nav-dropdown">
+        <a href="#process" class="nav-link">Process ▾</a>
+        <div class="dropdown-content">
+          <a href="#process">Attention</a>
+          <a href="#process">Engagement</a>
+          <a href="#process">Conversion</a>
+          <a href="#process">Brand Recall</a>
+        </div>
+      </div>
+    </div>
+    
+    <a class="button button-small nav-cta" href="#contact">Let's talk <span>↗</span></a>
+    <button class="menu-toggle" aria-label="Toggle menu" aria-controls="navLinks" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </nav>
+</header>
 
   <main id="main">
     <section class="hero section shell">
