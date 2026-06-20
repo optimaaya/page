@@ -1,3 +1,5 @@
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,25 +16,11 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
   
-  <!-- EmailJS Library -->
+  <!-- SCRIPTS - Only ONE copy of each! -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  
-  <!-- GSAP Animations -->
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  
-  <!-- Main JavaScript -->
   <script defer src="/app.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  
-  <!-- 2. GSAP Libraries -->
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  
-  <!-- 3. Your Main Script -->
-  <script defer src="/app.js"></script>
-  
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -294,7 +282,7 @@
           <p>Let's build the marketing system that turns attention into measurable, durable growth.</p>
           <div class="contact-note"><i>✦</i><span><strong>Strategy call, not a sales pitch.</strong><br>Tell us where you want to go. We'll bring perspective.</span></div>
         </div>
-        <!-- UPDATED FORM WITH MAILTO: -->
+        <!-- FIXED FORM WITH ALL REQUIRED IDs -->
         <form class="contact-form glass" id="contactForm">
           <div class="field-row">
             <label><span>Your name *</span><input id="name" name="name" type="text" required autocomplete="name" placeholder="Your name"></label>
@@ -326,10 +314,12 @@
           <label><span>What's the opportunity?</span>
             <textarea id="message" name="message" rows="3" placeholder="A little context helps us make the first call count."></textarea>
           </label>
-          <button class="button button-primary form-submit" type="submit">
-            <span class="submit-label">Contact OPTIMAAYA</span>
+          <button class="button button-primary form-submit" type="submit" id="submitBtn">
+            <span class="submit-label" id="submitLabel">Contact OPTIMAAYA</span>
             <span class="submit-arrow">↗</span>
           </button>
+          <!-- ADDED: Status message element -->
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
         </form>
       </div>
     </section>
