@@ -1,20 +1,28 @@
+cat > functions/api/contact.js << 'EOF'
 export async function onRequestPost(context) {
   const { request } = context;
   
   try {
-    // Get form data from the request
-    const formData = await request.formData();
+    // Try to parse as JSON first (for JavaScript submissions)
+    let data;
+    try {
+      data = await request.json();
+    } catch {
+      // If that fails, try formData (for HTML form submissions)
+      const formData = await request.formData();
+      data = {
+        name: formData.get('name') || '',
+        email: formData.get('email') || '',
+        company: formData.get('company') || 'Not provided',
+        service: formData.get('service') || 'Not provided',
+        budget: formData.get('budget') || 'Not provided',
+        message: formData.get('message') || 'No message provided'
+      };
+    }
     
-    // Extract all fields from the form
-    const name = formData.get('name') || '';
-    const email = formData.get('email') || '';
-    const company = formData.get('company') || 'Not provided';
-    const service = formData.get('service') || 'Not provided';
-    const budget = formData.get('budget') || 'Not provided';
-    const message = formData.get('message') || 'No message provided';
+    const { name, email, company, service, budget, message } = data;
     
-    // Log the submission (this will show in Cloudflare logs)
-    console.log('Form submission received:', { name, email, company, service, budget, message });
+    console.log('📩 Form submission received:', { name, email, company, service, budget, message });
     
     // Return success response
     return new Response(
@@ -31,7 +39,8 @@ export async function onRequestPost(context) {
       }
     );
   } catch (error) {
-    // Return error response
+    console.error('❌ Error:', error);
+    
     return new Response(
       JSON.stringify({ 
         success: false,
@@ -44,3 +53,4 @@ export async function onRequestPost(context) {
     );
   }
 }
+EOF
