@@ -4,10 +4,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const nav = document.querySelector(".nav-links");
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  // --- SCROLL HEADER ---
   const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 30);
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 
+  // --- MOBILE MENU ---
   menu?.addEventListener("click", () => {
     const open = nav.classList.toggle("open");
     menu.setAttribute("aria-expanded", String(open));
@@ -17,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     menu?.setAttribute("aria-expanded", "false");
   }));
 
+  // --- GSAP ANIMATIONS ---
   if (!prefersReduced && window.gsap) {
     gsap.registerPlugin(ScrollTrigger);
     gsap.set(".hero-copy > *", { opacity: 0, y: 28 });
@@ -49,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // --- SERVICE CARD HOVER EFFECT ---
   document.querySelectorAll(".service-card").forEach(card => {
     card.addEventListener("pointermove", e => {
       const rect = card.getBoundingClientRect();
@@ -57,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // --- COUNTER ANIMATIONS ---
   const counters = document.querySelectorAll("[data-counter]");
   const counterObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -78,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: .6 });
   counters.forEach(c => counterObserver.observe(c));
 
+  // --- CURSOR GLOW ---
   const glow = document.querySelector(".cursor-glow");
   if (glow && !prefersReduced) {
     window.addEventListener("pointermove", e => {
@@ -85,29 +91,71 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  const form = document.querySelector("#contactForm");
-  const status = document.querySelector("#formStatus");
-  form?.addEventListener("submit", async e => {
-    e.preventDefault();
-    const button = form.querySelector("button[type=submit]");
-    const label = button.querySelector(".submit-label");
-    const data = Object.fromEntries(new FormData(form).entries());
-    button.disabled = true; label.textContent = "Sending…";
-    status.textContent = ""; status.classList.remove("error");
-    try {
-      const response = await fetch((window.__HATCHABLE__?.api || "/api") + "/contact", {
-        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data)
-      });
-      const result = await response.json();
-      if (!response.ok) throw new Error(result.message || "Something went wrong.");
-      status.textContent = result.message;
-      form.reset(); label.textContent = "Brief received ✓";
-      setTimeout(() => { label.textContent = "Contact OPTIMAAYA"; }, 3500);
-    } catch (error) {
-      status.textContent = error.message || "Could not send your message. Please try again.";
-      status.classList.add("error"); label.textContent = "Contact OPTIMAAYA";
-    } finally { button.disabled = false; }
-  });
+  // --- CONTACT FORM - MAILTO: HANDLER ---
+  const form = document.getElementById("contactForm");
 
+  if (form) {
+    form.addEventListener("submit", function(e) {
+      // Prevent default form submission
+      e.preventDefault();
+
+      // Get all form values
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const company = document.getElementById("company").value.trim() || "Not provided";
+      const service = document.getElementById("service").value || "Not provided";
+      const budget = document.getElementById("budget").value || "Not provided";
+      const message = document.getElementById("message").value.trim() || "No message provided";
+
+      // Validate required fields
+      if (!name) {
+        alert("Please enter your name.");
+        document.getElementById("name").focus();
+        return false;
+      }
+
+      if (!email) {
+        alert("Please enter your email address.");
+        document.getElementById("email").focus();
+        return false;
+      }
+
+      // Simple email validation
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address.");
+        document.getElementById("email").focus();
+        return false;
+      }
+
+      // Build the email body
+      const bodyLines = [
+        "New Enquiry from OPTIMAAYA Website",
+        "",
+        "Name: " + name,
+        "Email: " + email,
+        "Company: " + company,
+        "Service Required: " + service,
+        "Monthly Budget: " + budget,
+        "",
+        "Message:",
+        message,
+        "",
+        "---",
+        "This email was sent from the OPTIMAAYA website contact form."
+      ];
+
+      const body = bodyLines.join("\n");
+
+      // Build the mailto: URL
+      const subject = "Enquiry from " + encodeURIComponent(name);
+      const mailtoLink = "mailto:optimaaya@gmail.com?subject=" + subject + "&body=" + encodeURIComponent(body);
+
+      // Open the user's email client
+      window.location.href = mailtoLink;
+    });
+  }
+
+  // --- FOOTER YEAR ---
   document.querySelector("#year").textContent = new Date().getFullYear();
 });
