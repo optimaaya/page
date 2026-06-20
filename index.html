@@ -279,7 +279,8 @@
           <p>Let's build the marketing system that turns attention into measurable, durable growth.</p>
           <div class="contact-note"><i>✦</i><span><strong>Strategy call, not a sales pitch.</strong><br>Tell us where you want to go. We'll bring perspective.</span></div>
         </div>
-        <form class="contact-form glass" id="contactForm">
+        <!-- FIXED: Added method="POST" -->
+        <form class="contact-form glass" id="contactForm" method="POST" data-static-form-name="contact">
           <div class="field-row">
             <label><span>Your name *</span><input name="name" type="text" required autocomplete="name" placeholder="Your name"></label>
             <label><span>Work email *</span><input name="email" type="email" required autocomplete="email" placeholder="you@company.com"></label>
@@ -288,16 +289,32 @@
             <label><span>Company</span><input name="company" type="text" autocomplete="organization" placeholder="Brand / company"></label>
             <label><span>Primary need</span>
               <select name="service">
-                <option value="">Choose a service</option><option>Performance Marketing</option><option>Influencer Campaigns</option>
-                <option>SEO / AEO / GEO</option><option>Brand Strategy</option><option>CRM & Automation</option><option>Full Growth Partnership</option>
+                <option value="">Choose a service</option>
+                <option>Performance Marketing</option>
+                <option>Influencer Campaigns</option>
+                <option>SEO / AEO / GEO</option>
+                <option>Brand Strategy</option>
+                <option>CRM & Automation</option>
+                <option>Full Growth Partnership</option>
               </select>
             </label>
           </div>
           <label><span>Monthly growth budget</span>
-            <select name="budget"><option value="">Choose a range</option><option>Under ₹1L</option><option>₹1L – ₹3L</option><option>₹3L – ₹8L</option><option>₹8L+</option></select>
+            <select name="budget">
+              <option value="">Choose a range</option>
+              <option>Under ₹1L</option>
+              <option>₹1L – ₹3L</option>
+              <option>₹3L – ₹8L</option>
+              <option>₹8L+</option>
+            </select>
           </label>
-          <label><span>What's the opportunity?</span><textarea name="message" rows="3" placeholder="A little context helps us make the first call count."></textarea></label>
-          <button class="button button-primary form-submit" type="submit"><span class="submit-label">Contact OPTIMAAYA</span><span class="submit-arrow">↗</span></button>
+          <label><span>What's the opportunity?</span>
+            <textarea name="message" rows="3" placeholder="A little context helps us make the first call count."></textarea>
+          </label>
+          <button class="button button-primary form-submit" type="submit">
+            <span class="submit-label">Contact OPTIMAAYA</span>
+            <span class="submit-arrow">↗</span>
+          </button>
           <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
         </form>
       </div>
