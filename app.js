@@ -92,7 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --- CONTACT FORM - EMAILJS HANDLER ---
-  // Initialize EmailJS with your Public Key
   emailjs.init("5fB6irNIKc806LulR");
 
   const form = document.getElementById("contactForm");
@@ -104,7 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", function(e) {
       e.preventDefault();
       
-      // Get form values
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
       const company = document.getElementById("company").value.trim() || "Not provided";
@@ -112,7 +110,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const budget = document.getElementById("budget").value || "Not provided";
       const message = document.getElementById("message").value.trim() || "No message provided";
       
-      // Validate
       if (!name) {
         status.textContent = "Please enter your name.";
         status.className = "form-status error";
@@ -127,7 +124,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
       
-      // Email validation
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailPattern.test(email)) {
         status.textContent = "Please enter a valid email address.";
@@ -136,13 +132,11 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
       
-      // Disable button and show sending status
       submitBtn.disabled = true;
       submitLabel.textContent = "Sending...";
       status.textContent = "";
       status.className = "form-status";
       
-      // Send email using EmailJS
       const templateParams = {
         name: name,
         email: email,
@@ -153,7 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
         to_email: "optimaaya@gmail.com"
       };
       
-      // Send email with your Service ID and Template ID
       emailjs.send("service_o0kcmbr", "template_ai7g6oe", templateParams)
         .then(function(response) {
           console.log("Email sent successfully:", response);
@@ -175,6 +168,51 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
   }
+
+  // --- OVERVIEW POPUP (MODAL) ---
+  const overviewLinks = document.querySelectorAll('.js-overview');
+  const modal = document.getElementById('overviewModal');
+  const closeBtn = document.querySelector('.modal-close');
+  const backdrop = document.querySelector('.overview-modal');
+  
+  function openModal() {
+    if (modal) {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  
+  function closeModal() {
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+  
+  overviewLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      openModal();
+    });
+  });
+  
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+  }
+  
+  if (backdrop) {
+    backdrop.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+  }
+  
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+      closeModal();
+    }
+  });
 
   // --- FOOTER YEAR ---
   document.querySelector("#year").textContent = new Date().getFullYear();
