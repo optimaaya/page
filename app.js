@@ -91,68 +91,88 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- CONTACT FORM - MAILTO: HANDLER ---
+  // --- CONTACT FORM - EMAILJS HANDLER ---
+  // Initialize EmailJS with your Public Key
+  emailjs.init("5fB6irNIKc806LulR");
+
   const form = document.getElementById("contactForm");
+  const status = document.getElementById("formStatus");
+  const submitBtn = document.getElementById("submitBtn");
+  const submitLabel = document.getElementById("submitLabel");
 
   if (form) {
     form.addEventListener("submit", function(e) {
-      // Prevent default form submission
       e.preventDefault();
-
-      // Get all form values
+      
+      // Get form values
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
       const company = document.getElementById("company").value.trim() || "Not provided";
       const service = document.getElementById("service").value || "Not provided";
       const budget = document.getElementById("budget").value || "Not provided";
       const message = document.getElementById("message").value.trim() || "No message provided";
-
-      // Validate required fields
+      
+      // Validate
       if (!name) {
-        alert("Please enter your name.");
+        status.textContent = "Please enter your name.";
+        status.className = "form-status error";
         document.getElementById("name").focus();
-        return false;
+        return;
       }
-
+      
       if (!email) {
-        alert("Please enter your email address.");
+        status.textContent = "Please enter your email address.";
+        status.className = "form-status error";
         document.getElementById("email").focus();
-        return false;
+        return;
       }
-
-      // Simple email validation
+      
+      // Email validation
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailPattern.test(email)) {
-        alert("Please enter a valid email address.");
+        status.textContent = "Please enter a valid email address.";
+        status.className = "form-status error";
         document.getElementById("email").focus();
-        return false;
+        return;
       }
-
-      // Build the email body
-      const bodyLines = [
-        "New Enquiry from OPTIMAAYA Website",
-        "",
-        "Name: " + name,
-        "Email: " + email,
-        "Company: " + company,
-        "Service Required: " + service,
-        "Monthly Budget: " + budget,
-        "",
-        "Message:",
-        message,
-        "",
-        "---",
-        "This email was sent from the OPTIMAAYA website contact form."
-      ];
-
-      const body = bodyLines.join("\n");
-
-      // Build the mailto: URL
-      const subject = "Enquiry from " + encodeURIComponent(name);
-      const mailtoLink = "mailto:optimaaya@gmail.com?subject=" + subject + "&body=" + encodeURIComponent(body);
-
-      // Open the user's email client
-      window.location.href = mailtoLink;
+      
+      // Disable button and show sending status
+      submitBtn.disabled = true;
+      submitLabel.textContent = "Sending...";
+      status.textContent = "";
+      status.className = "form-status";
+      
+      // Send email using EmailJS
+      const templateParams = {
+        name: name,
+        email: email,
+        company: company,
+        service: service,
+        budget: budget,
+        message: message,
+        to_email: "optimaaya@gmail.com"
+      };
+      
+      // Send email with your Service ID and Template ID
+      emailjs.send("service_o0kcmbr", "template_ai7g6oe", templateParams)
+        .then(function(response) {
+          console.log("Email sent successfully:", response);
+          status.textContent = "✅ Thanks! We'll get back to you within 24 hours.";
+          status.className = "form-status success";
+          submitLabel.textContent = "Message Sent ✓";
+          form.reset();
+          submitBtn.disabled = false;
+          setTimeout(() => {
+            submitLabel.textContent = "Contact OPTIMAAYA";
+          }, 3000);
+        })
+        .catch(function(error) {
+          console.error("Email send error:", error);
+          status.textContent = "❌ Something went wrong. Please try again or email us directly at optimaaya@gmail.com";
+          status.className = "form-status error";
+          submitLabel.textContent = "Contact OPTIMAAYA";
+          submitBtn.disabled = false;
+        });
     });
   }
 
