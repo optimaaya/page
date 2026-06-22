@@ -321,3 +321,36 @@ h1,h2,h3,p{margin-top:0}.hero h1{font:700 clamp(55px,6vw,88px)/.98 var(--font);l
     font-size: 18px;
   }
 }
+/* Dropdown arrow styling */
+.dropdown-arrow {
+  font-size: 10px;
+  margin-left: 4px;
+  color: #8b5cf6;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.nav-dropdown:hover .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+/* Fix for mobile menu - ensure dropdown items are visible */
+@media (max-width: 760px) {
+  .nav-dropdown .nav-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 6px;
+    border-bottom: 1px solid var(--line);
+    font-size: 16px;
+  }
+  
+  .nav-dropdown .nav-link .dropdown-arrow {
+    font-size: 12px;
+    color: #8b5cf6;
+  }
+  
+  .nav-dropdown:hover .dropdown-arrow {
+    transform: none;
+  }
+}
