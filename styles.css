@@ -359,7 +359,7 @@ h1,h2,h3,p{margin-top:0}.hero h1{font:700 clamp(55px,6vw,88px)/.98 var(--font);l
     height: 36px;
     font-size: 20px;
     position: relative;
-    top: 8px;
+    top: 18px;
 }
   .overview-modal-body {
     padding: 24px 18px;
