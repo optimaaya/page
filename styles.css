@@ -483,6 +483,7 @@ h1, h2, h3, .hero h1, .section-heading h2, .sticky-title h2 {
    ENHANCED COOKIE CONSENT BANNER
 ========================= */
 
+
 .cookie-banner {
   position: fixed;
   bottom: 20px;
@@ -630,5 +631,84 @@ h1, h2, h3, .hero h1, .section-heading h2, .sticky-title h2 {
     min-width: 80px;
   }
 }
+
+/* =========================
+   BACK TO TOP - FOOTER BUTTON      ← ✅ CORRECT POSITION (OUTSIDE @media)
+========================= */
+
+.back-to-top-footer {
+  background: none;
+  border: none;
+  color: #96969f;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+  font-family: var(--font, "Manrope", sans-serif);
+  padding: 0;
+}
+
+.back-to-top-footer:hover {
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.back-to-top-footer:focus-visible {
+  outline: 2px solid #8b5cf6;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Floating back-to-top button */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4f8cff, #8b5cf6);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.9);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 4px 20px rgba(79, 140, 255, 0.3);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.back-to-top:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 40px rgba(79, 140, 255, 0.4);
+}
+
+.back-to-top:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+@media (max-width: 760px) {
+  .back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 46px;
+    height: 46px;
+    font-size: 18px;
+  }
+}
+
 /* Add Playfair Display font */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
