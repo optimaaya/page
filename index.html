@@ -528,20 +528,40 @@
   <!-- ========== OVERVIEW POPUP (MODAL) ========== -->
   <div class="overview-modal" id="overviewModal" role="dialog" aria-modal="true" aria-labelledby="overviewModalTitle">
     <div class="overview-modal-content">
-      <div class="overview-modal-header">
-        <h2 id="overviewModalTitle">📊 OPTIMAAYA Overview</h2>
-        <button class="modal-close" aria-label="Close Overview">
-          <span aria-hidden="true">✕</span>
-        </button>
+   <div class="overview-modal-header">
+  <h2 id="overviewModalTitle">📊 OPTIMAAYA Overview</h2>
+</div>
       </div>
-      <div class="overview-modal-body" id="overviewModalBody">
-        <div id="portfolioLoader" style="text-align:center;padding:60px 20px;">
-          <div style="width:40px;height:40px;border:3px solid rgba(255,255,255,0.1);border-top-color:#8b5cf6;border-radius:50%;margin:0 auto 20px;animation:spin 1s linear infinite;"></div>
-          <p style="color:#a5a5ae;">Loading portfolio...</p>
-        </div>
-        <div id="portfolioContent" style="display:none;"></div>
-      </div>
-    </div>
+    <div class="overview-modal-body" id="overviewModalBody">
+  <!-- Loading message while content loads -->
+  <div id="portfolioLoader" style="text-align:center;padding:60px 20px;">
+    <div style="width:40px;height:40px;border:3px solid rgba(255,255,255,0.1);border-top-color:#8b5cf6;border-radius:50%;margin:0 auto 20px;animation:spin 1s linear infinite;"></div>
+    <p style="color:#a5a5ae;">Loading portfolio...</p>
+  </div>
+  <!-- Portfolio content will be loaded here -->
+  <div id="portfolioContent" style="display:none;"></div>
+  
+  <!-- CLOSE BUTTON AT BOTTOM -->
+  <div style="text-align:center;padding:20px 0 10px 0;border-top:1px solid rgba(255,255,255,0.06);margin-top:20px;">
+    <button class="modal-close-bottom" aria-label="Close Overview" style="
+      background: linear-gradient(135deg, #4f8cff, #8b5cf6);
+      color: #fff;
+      border: none;
+      padding: 14px 40px;
+      border-radius: 99px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(79, 140, 255, 0.3);
+      width: 100%;
+      max-width: 300px;
+      touch-action: manipulation;
+    ">
+      ✕ Close
+    </button>
+  </div>
+</div>
   </div>
 
   <!-- ========== BACK TO TOP BUTTON ========== -->
