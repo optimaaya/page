@@ -170,6 +170,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --- OVERVIEW POPUP (MODAL) ---
+
+  // --- OVERVIEW POPUP (MODAL) - UPDATED ---
   const overviewLinks = document.querySelectorAll('.js-overview');
   const modal = document.getElementById('overviewModal');
   const closeBtn = document.querySelector('.modal-close');
@@ -181,6 +183,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // Only load once
     if (portfolioContent && portfolioContent.dataset.loaded === 'true') {
       return;
+    }
+
+    // Show loader
+    if (portfolioLoader) {
+      portfolioLoader.style.display = 'block';
+    }
+    if (portfolioContent) {
+      portfolioContent.style.display = 'none';
     }
 
     // Fetch the portfolio.html file
@@ -223,6 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function openModal() {
     if (modal) {
       modal.classList.add('active');
+      document.body.classList.add('modal-open');
       document.body.style.overflow = 'hidden';
       loadPortfolio(); // Load portfolio when modal opens
     }
@@ -231,6 +242,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function closeModal() {
     if (modal) {
       modal.classList.remove('active');
+      document.body.classList.remove('modal-open');
       document.body.style.overflow = '';
     }
   }
@@ -255,12 +267,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   
+  // Close modal with Escape key
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
       closeModal();
     }
   });
 
+  // Prevent body scroll on touch devices when modal is open
+  if (modal) {
+    modal.addEventListener('touchmove', function(e) {
+      if (e.target === modal) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+  }
   // --- FOOTER YEAR ---
   document.querySelector("#year").textContent = new Date().getFullYear();
     // --- BACK TO TOP (FIXED - WORKS FOR BOTH FOOTER LINK AND FLOATING BUTTON) ---
