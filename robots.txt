@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+Sitemap: https://optimaaya.pages.dev/sitemap.xml
+
+# Disallow admin or private paths
+Disallow: /admin/
+Disallow: /private/
+Disallow: /tmp/
+
+# Crawl-delay for heavy scraping
+Crawl-delay: 2
+
+# Allow search engines to crawl all content
+User-agent: Googlebot
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: AhrefsBot
+Allow: /
+User-agent: SemrushBot
+Allow: /
