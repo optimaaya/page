@@ -10,17 +10,64 @@
   <meta property="og:title" content="OPTIMAAYA — Building Brands That People Notice">
   <meta property="og:description" content="Performance-driven digital marketing, brand growth and AI search visibility.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://optimaaya.pages.dev/">
+  
+  <!-- ====== PRECONNECT FOR CDNs (LCP Optimization) ====== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://images.unsplash.com">
-   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- ====== PRECONNECT FOR CRITICAL THIRD-PARTY ====== -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  
+  <!-- ====== SCHEMA MARKUP (Updated with correct domain) ====== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "OPTIMAAYA",
+    "description": "Performance Marketing & AI Search Growth Agency",
+    "url": "https://optimaaya.pages.dev",
+    "email": "optimaaya@gmail.com",
+    "foundingDate": "2024",
+    "sameAs": [
+      "https://www.instagram.com/optimaaya",
+      "https://www.linkedin.com/company/optimaaya",
+      "https://www.facebook.com/optimaaya",
+      "https://www.youtube.com/@optimaaya"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "IN"
+    },
+    "offers": {
+      "@type": "Offer",
+      "description": "Performance marketing, influencer campaigns, SEO, AEO, GEO, and AI search optimization services"
+    }
+  }
+  </script>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "OPTIMAAYA",
+    "url": "https://optimaaya.pages.dev"
+  }
+  </script>
   
   <link rel="stylesheet" href="/styles.css">
   
-  <!-- SCRIPTS -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <!-- ====== SCRIPTS WITH DEFER FOR PERFORMANCE ====== -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script defer src="/app.js"></script>
@@ -80,9 +127,9 @@
         </div>
         <div class="hero-proof">
           <div class="avatar-stack" aria-hidden="true">
-            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&h=96&fit=crop" alt="">
-            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&h=96&fit=crop" alt="">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=96&h=96&fit=crop" alt="">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&h=96&fit=crop&auto=format&q=80" alt="" loading="lazy" width="36" height="36">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&h=96&fit=crop&auto=format&q=80" alt="" loading="lazy" width="36" height="36">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=96&h=96&fit=crop&auto=format&q=80" alt="" loading="lazy" width="36" height="36">
           </div>
           <div><strong>Built for ambitious brands</strong><span>Strategy to measurable scale</span></div>
         </div>
@@ -97,7 +144,7 @@
             <button aria-label="More information">•••</button>
           </div>
           <div class="campaign-image">
-            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85" alt="Creative team planning a brand growth campaign" loading="eager">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85" alt="Creative team planning a brand growth campaign" loading="eager" width="440" height="430">
             <div class="image-label"><span>STRATEGY</span><strong>Made to move<br>people.</strong></div>
           </div>
           <div class="campaign-meta">
@@ -384,6 +431,32 @@
       </div>
     </div>
   </div>
+
+  <!-- ========== BACK TO TOP BUTTON (FIXED) ========== -->
+  <button class="back-to-top" aria-label="Back to top">
+    <span aria-hidden="true">↑</span>
+  </button>
+
+  <!-- ========== COOKIE CONSENT BANNER ========== -->
+  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Cookie consent">
+    <div class="cookie-banner-content">
+      <div class="cookie-banner-text">
+        We use cookies to improve your experience. By continuing, you agree to our 
+        <a href="#">Privacy Policy</a> and <a href="#">Cookie Policy</a>.
+      </div>
+      <div class="cookie-banner-actions">
+        <button class="cookie-btn cookie-btn-reject" id="rejectCookies">Reject</button>
+        <button class="cookie-btn cookie-btn-accept" id="acceptCookies">Accept All</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Spin animation for loader -->
+  <style>
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
 
 </body>
 </html>
