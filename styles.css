@@ -169,6 +169,9 @@ h1,h2,h3,p{margin-top:0}.hero h1{font:700 clamp(55px,6vw,88px)/.98 var(--font);l
    OVERVIEW POPUP (MODAL) - OPTIMIZED FOR MOBILE
    (Preserves all desktop functionality)
 ========================= */
+/* =========================
+   OVERVIEW POPUP (MODAL) - FIXED FOR MOBILE
+========================= */
 
 .overview-modal {
   position: fixed;
@@ -240,7 +243,6 @@ h1,h2,h3,p{margin-top:0}.hero h1{font:700 clamp(55px,6vw,88px)/.98 var(--font);l
   font: 600 22px/1 var(--font);
   color: #ffffff;
   margin: 0;
-  font-size: clamp(18px, 3vw, 22px);
 }
 
 .overview-modal-header .modal-close {
@@ -257,6 +259,8 @@ h1,h2,h3,p{margin-top:0}.hero h1{font:700 clamp(55px,6vw,88px)/.98 var(--font);l
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  padding: 0;
+  line-height: 1;
 }
 
 .overview-modal-header .modal-close:hover {
@@ -271,6 +275,24 @@ h1,h2,h3,p{margin-top:0}.hero h1{font:700 clamp(55px,6vw,88px)/.98 var(--font);l
   max-height: calc(90vh - 80px);
   flex: 1;
   -webkit-overflow-scrolling: touch;
+}
+
+.overview-modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.overview-modal-body::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.overview-modal-body::-webkit-scrollbar-thumb {
+  background: #8b5cf6;
+  border-radius: 10px;
+}
+
+.overview-modal-body::-webkit-scrollbar-thumb:hover {
+  background: #7c3aed;
 }
 
 .overview-modal-body h3 {
@@ -315,11 +337,7 @@ h1,h2,h3,p{margin-top:0}.hero h1{font:700 clamp(55px,6vw,88px)/.98 var(--font);l
   margin-top: 8px;
 }
 
-/* =========================
-   OVERVIEW POPUP - MOBILE OPTIMIZATION (ADDITIVE)
-   Desktop behavior remains unchanged
-========================= */
-
+/* Mobile Optimization */
 @media (max-width: 760px) {
   .overview-modal {
     padding: 10px;
@@ -330,7 +348,6 @@ h1,h2,h3,p{margin-top:0}.hero h1{font:700 clamp(55px,6vw,88px)/.98 var(--font);l
     max-height: 95vh;
     border-radius: 20px 20px 0 0;
     animation: modalSlideUpMobile 0.4s ease;
-    margin-bottom: 0;
   }
   
   @keyframes modalSlideUpMobile {
@@ -347,7 +364,6 @@ h1,h2,h3,p{margin-top:0}.hero h1{font:700 clamp(55px,6vw,88px)/.98 var(--font);l
   .overview-modal-header {
     padding: 16px 20px;
     min-height: 60px;
-    border-radius: 20px 20px 0 0;
   }
   
   .overview-modal-header h2 {
@@ -363,8 +379,6 @@ h1,h2,h3,p{margin-top:0}.hero h1{font:700 clamp(55px,6vw,88px)/.98 var(--font);l
   .overview-modal-body {
     padding: 24px 18px;
     max-height: calc(95vh - 60px);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
   }
   
   .overview-modal-body h3 {
@@ -373,7 +387,6 @@ h1,h2,h3,p{margin-top:0}.hero h1{font:700 clamp(55px,6vw,88px)/.98 var(--font);l
   
   .overview-modal-body p {
     font-size: 14px;
-    line-height: 1.7;
   }
   
   .overview-modal-body .highlight-grid {
@@ -431,7 +444,6 @@ h1,h2,h3,p{margin-top:0}.hero h1{font:700 clamp(55px,6vw,88px)/.98 var(--font);l
   
   .overview-modal-body p {
     font-size: 13px;
-    line-height: 1.6;
   }
   
   .overview-modal-body .highlight-grid {
