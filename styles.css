@@ -354,12 +354,13 @@ h1,h2,h3,p{margin-top:0}.hero h1{font:700 clamp(55px,6vw,88px)/.98 var(--font);l
     font-size: 17px;
   }
   
-  .overview-modal-header .modal-close {
+.overview-modal-header .modal-close {
     width: 36px;
     height: 36px;
     font-size: 20px;
-  }
-  
+    position: relative;
+    top: 4px;
+}
   .overview-modal-body {
     padding: 24px 18px;
     max-height: calc(95vh - 60px);
