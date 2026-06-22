@@ -321,3 +321,164 @@ h1,h2,h3,p{margin-top:0}.hero h1{font:700 clamp(55px,6vw,88px)/.98 var(--font);l
     font-size: 18px;
   }
 }
+/* =========================
+   PREMIUM DESIGN - ADDITIONS
+   Add this to the END of your styles.css
+========================= */
+
+/* Font improvements */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Better gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #4f8cff 0%, #8b5cf6 45%, #c084fc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Enhanced card hover */
+.service-card {
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Glowing button effect */
+.button-primary {
+  background: linear-gradient(135deg, #4f8cff, #8b5cf6);
+  box-shadow: 0 4px 20px rgba(79, 140, 255, 0.3);
+}
+
+.button-primary:hover {
+  box-shadow: 0 8px 40px rgba(79, 140, 255, 0.4);
+  transform: translateY(-3px);
+}
+
+/* Floating orbs animation */
+@keyframes orbFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(40px, -30px) scale(1.1); }
+}
+
+.orb-one {
+  animation: orbFloat 20s ease-in-out infinite alternate;
+}
+
+.orb-two {
+  animation: orbFloat 25s ease-in-out infinite alternate-reverse;
+}
+
+/* Navigation underline effect */
+.nav-links a {
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #4f8cff, #8b5cf6);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Pulse animation for live dot */
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.8); }
+}
+
+.live-dot::before {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Enhanced glass effect */
+.glass {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Section kicker with line */
+.section-kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-kicker::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(139, 92, 246, 0.3), transparent);
+}
+
+/* Better stat numbers */
+.stat strong {
+  background: linear-gradient(135deg, #4f8cff, #8b5cf6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Capability tags hover */
+.capability-cloud span {
+  transition: all 0.3s ease;
+}
+
+.capability-cloud span:hover {
+  background: rgba(79, 140, 255, 0.1);
+  border-color: rgba(79, 140, 255, 0.2);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Overview arrow rotation */
+.nav-links a:hover .overview-arrow {
+  transform: rotate(90deg);
+}
+
+.overview-arrow {
+  transition: transform 0.3s ease;
+}
+
+/* Campaign card hover */
+.campaign-card {
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.campaign-card:hover {
+  transform: rotate(0deg) scale(1.01);
+}
+
+.campaign-image img {
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.campaign-card:hover .campaign-image img {
+  transform: scale(1.05);
+}
+
+/* Better font for headings */
+h1, h2, h3, .hero h1, .section-heading h2, .sticky-title h2 {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Add Playfair Display font */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
