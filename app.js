@@ -216,4 +216,64 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- FOOTER YEAR ---
   document.querySelector("#year").textContent = new Date().getFullYear();
+    // --- LOAD PORTFOLIO INTO OVERVIEW MODAL ---
+  const modal = document.getElementById('overviewModal');
+  const portfolioContent = document.getElementById('portfolioContent');
+  const portfolioLoader = document.getElementById('portfolioLoader');
+
+  // Function to load portfolio when modal opens
+  function loadPortfolio() {
+    // Only load once
+    if (portfolioContent.dataset.loaded === 'true') {
+      return;
+    }
+
+    // Fetch the portfolio.html file
+    fetch('/portfolio.html')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Portfolio not found');
+        }
+        return response.text();
+      })
+      .then(html => {
+        // Extract only the body content
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const bodyContent = doc.body.innerHTML;
+        
+        // Insert into portfolio content div
+        portfolioContent.innerHTML = bodyContent;
+        portfolioContent.style.display = 'block';
+        portfolioLoader.style.display = 'none';
+        portfolioContent.dataset.loaded = 'true';
+      })
+      .catch(error => {
+        console.error('Error loading portfolio:', error);
+        portfolioLoader.innerHTML = `
+          <p style="color:#ff6b6b;text-align:center;padding:40px;">
+            ❌ Could not load portfolio content. 
+            <br><span style="font-size:14px;color:#a5a5ae;">Please check if portfolio.html exists.</span>
+          </p>
+        `;
+      });
+  }
+
+  // Update modal open function to load portfolio
+  const originalOpenModal = openModal;
+  openModal = function() {
+    if (modal) {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      loadPortfolio(); // Load portfolio when modal opens
+    }
+  };
+
+  // Update close function (keep existing)
+  function closeModal() {
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
 });
