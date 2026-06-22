@@ -12,14 +12,35 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://optimaaya.pages.dev/">
   
-  <!-- ====== PRECONNECT FOR CDNs (LCP Optimization) ====== -->
+  <!-- ====== CANONICAL TAG (FIX 1) ====== -->
+  <link rel="canonical" href="https://optimaaya.pages.dev/">
+  
+  <!-- ====== OPEN GRAPH TAGS (FIX 9) ====== -->
+  <meta property="og:title" content="OPTIMAAYA — Performance Marketing & AI Search Growth Agency">
+  <meta property="og:description" content="Building brands that people notice, trust, and buy from. Performance marketing, influencer campaigns, SEO, AEO, GEO, and AI search optimization.">
+  <meta property="og:image" content="https://optimaaya.pages.dev/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://optimaaya.pages.dev/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OPTIMAAYA">
+  <meta property="og:locale" content="en_IN">
+  
+  <!-- ====== X (TWITTER) CARDS ====== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="OPTIMAAYA — Performance Marketing & AI Search Growth Agency">
+  <meta name="twitter:description" content="Building brands that people notice, trust, and buy from. Performance marketing, AI search, and brand growth.">
+  <meta name="twitter:image" content="https://optimaaya.pages.dev/og-image.jpg">
+  <meta name="twitter:site" content="@optimaaya">
+  
+  <!-- ====== PRECONNECT FOR CDNs ====== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://images.unsplash.com">
   
-  <!-- ====== PRECONNECT FOR CRITICAL THIRD-PARTY ====== -->
+  <!-- ====== DNS PREFETCH ====== -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
   <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
@@ -28,29 +49,39 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   
-  <!-- ====== SCHEMA MARKUP (Updated with correct domain) ====== -->
+  <!-- ====== ENHANCED LOCAL BUSINESS SCHEMA (FIX 4) ====== -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "LocalBusiness",
     "name": "OPTIMAAYA",
-    "description": "Performance Marketing & AI Search Growth Agency",
+    "description": "Performance Marketing & AI Search Growth Agency building brands that people notice, trust, and buy from.",
     "url": "https://optimaaya.pages.dev",
     "email": "optimaaya@gmail.com",
+    "telephone": "+91-XXXXXXXXXX",
     "foundingDate": "2024",
+    "priceRange": "₹₹₹",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "IN"
+    },
     "sameAs": [
       "https://www.instagram.com/optimaaya",
       "https://www.linkedin.com/company/optimaaya",
       "https://www.facebook.com/optimaaya",
       "https://www.youtube.com/@optimaaya"
     ],
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "IN"
-    },
     "offers": {
       "@type": "Offer",
-      "description": "Performance marketing, influencer campaigns, SEO, AEO, GEO, and AI search optimization services"
+      "description": "Performance marketing, influencer campaigns, SEO, AEO, GEO, and AI search optimization services",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "INR"
+      }
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "India"
     }
   }
   </script>
@@ -60,13 +91,60 @@
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "OPTIMAAYA",
-    "url": "https://optimaaya.pages.dev"
+    "url": "https://optimaaya.pages.dev",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://optimaaya.pages.dev/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
   }
+  </script>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is OPTIMAAYA?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "OPTIMAAYA is a modern growth agency that combines performance marketing, influencer campaigns, SEO, AEO, GEO, and AI search optimization to build memorable, high-growth brands."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What services does OPTIMAAYA offer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "OPTIMAAYA offers performance marketing, influencer campaigns, viral content strategy, SEO/AEO/GEO, AI visibility audits, CRM and automation, analytics tracking, and creative direction."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does OPTIMAAYA help with AI search?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "OPTIMAAYA optimizes your brand for AI platforms like ChatGPT, Gemini, Claude, and Perplexity through AEO and GEO audits, entity SEO, knowledge graph optimization, and AI citation readiness."
+        }
+      }
+    ]
+  }
+  </script>
+  
+  <!-- ====== GOOGLE ANALYTICS (FIX 5) ====== -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
   </script>
   
   <link rel="stylesheet" href="/styles.css">
   
-  <!-- ====== SCRIPTS WITH DEFER FOR PERFORMANCE ====== -->
+  <!-- ====== SCRIPTS WITH DEFER ====== -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -86,21 +164,12 @@
       </a>
       
       <div class="nav-links" id="navLinks">
-        <!-- About -->
         <a href="#about" class="nav-link">About</a>
-        
-        <!-- Overview (with popup) -->
         <a href="#" class="nav-link overview-link js-overview">
           <span class="overview-arrow">↷</span> Overview
         </a>
-        
-        <!-- Services -->
         <a href="#services" class="nav-link">Services</a>
-        
-        <!-- AI Search -->
         <a href="#ai-search" class="nav-link">AI Search</a>
-        
-        <!-- Process -->
         <a href="#process" class="nav-link">Process</a>
       </div>
       
@@ -127,9 +196,9 @@
         </div>
         <div class="hero-proof">
           <div class="avatar-stack" aria-hidden="true">
-            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&h=96&fit=crop&auto=format&q=80" alt="" loading="lazy" width="36" height="36">
-            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&h=96&fit=crop&auto=format&q=80" alt="" loading="lazy" width="36" height="36">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=96&h=96&fit=crop&auto=format&q=80" alt="" loading="lazy" width="36" height="36">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&h=96&fit=crop&auto=format&q=80" alt="Team member profile photo" loading="lazy" width="36" height="36">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&h=96&fit=crop&auto=format&q=80" alt="Team member profile photo" loading="lazy" width="36" height="36">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=96&h=96&fit=crop&auto=format&q=80" alt="Team member profile photo" loading="lazy" width="36" height="36">
           </div>
           <div><strong>Built for ambitious brands</strong><span>Strategy to measurable scale</span></div>
         </div>
@@ -310,6 +379,31 @@
       </div>
     </section>
 
+    <!-- ========== WHY CHOOSE SECTION (FIX 3 - OPTION A) ========== -->
+    <section class="why-choose section shell">
+      <div class="section-heading">
+        <div>
+          <div class="section-kicker reveal"><span>04.5</span> Why brands trust us</div>
+          <h2 class="reveal">Marketing that delivers<br><span>real results.</span></h2>
+        </div>
+        <p class="reveal">We combine data-driven strategy with creative excellence to build brands that dominate their categories.</p>
+      </div>
+      <div class="choose-grid">
+        <div class="choose-card reveal">
+          <h3>Data-Driven Decisions</h3>
+          <p>Every campaign is backed by real-time analytics and performance data, ensuring your marketing budget delivers maximum ROI.</p>
+        </div>
+        <div class="choose-card reveal">
+          <h3>Creative Excellence</h3>
+          <p>Our award-winning creative team produces content that captures attention, builds emotional connection, and drives action.</p>
+        </div>
+        <div class="choose-card reveal">
+          <h3>Future-Ready Strategy</h3>
+          <p>We stay ahead of trends in AI search, performance marketing, and consumer behavior to keep your brand ahead of the competition.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- ========== INDUSTRIES SECTION ========== -->
     <section class="industries section shell">
       <div class="section-kicker reveal"><span>05</span> Where we play</div>
@@ -353,6 +447,16 @@
           <div class="section-kicker"><span>07</span> Start a conversation</div>
           <h2>Ready to become<br><span class="gradient-text">the obvious choice?</span></h2>
           <p>Let's build the marketing system that turns attention into measurable, durable growth.</p>
+          <div class="contact-details">
+            <div class="contact-detail-item">
+              <span class="contact-detail-icon">📧</span>
+              <a href="mailto:optimaaya@gmail.com">optimaaya@gmail.com</a>
+            </div>
+            <div class="contact-detail-item">
+              <span class="contact-detail-icon">📞</span>
+              <a href="tel:+91XXXXXXXXXX">+91-XXXXXXXXXX</a>
+            </div>
+          </div>
           <div class="contact-note"><i>✦</i><span><strong>Strategy call, not a sales pitch.</strong><br>Tell us where you want to go. We'll bring perspective.</span></div>
         </div>
         <form class="contact-form glass" id="contactForm">
@@ -408,7 +512,25 @@
       <div><span class="footer-label">Social</span><a href="#" aria-label="OPTIMAAYA on Instagram">Instagram ↗</a><a href="#" aria-label="OPTIMAAYA on LinkedIn">LinkedIn ↗</a><a href="#" aria-label="OPTIMAAYA on Facebook">Facebook ↗</a><a href="#" aria-label="OPTIMAAYA on YouTube">YouTube ↗</a></div>
       <div class="footer-cta"><span class="footer-label">New business</span><a href="#contact">Let's make<br>something matter. <b>↗</b></a></div>
     </div>
-    <div class="footer-bottom"><span>© <span id="year"></span> OPTIMAAYA</span><span>Performance • Influence • Search • Brand</span><a href="#top">Back to top ↑</a></div>
+    <div class="footer-contact">
+      <div class="footer-contact-item">
+        <span class="footer-contact-label">Email</span>
+        <a href="mailto:optimaaya@gmail.com">optimaaya@gmail.com</a>
+      </div>
+      <div class="footer-contact-item">
+        <span class="footer-contact-label">Phone</span>
+        <a href="tel:+91XXXXXXXXXX">+91-XXXXXXXXXX</a>
+      </div>
+      <div class="footer-contact-item">
+        <span class="footer-contact-label">Location</span>
+        <span>India</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> OPTIMAAYA</span>
+      <span>Performance • Influence • Search • Brand</span>
+      <button class="back-to-top-footer" aria-label="Back to top">↑ Back to top</button>
+    </div>
   </footer>
 
   <!-- ========== OVERVIEW POPUP (MODAL) ========== -->
@@ -421,18 +543,16 @@
         </button>
       </div>
       <div class="overview-modal-body" id="overviewModalBody">
-        <!-- Loading message while content loads -->
         <div id="portfolioLoader" style="text-align:center;padding:60px 20px;">
           <div style="width:40px;height:40px;border:3px solid rgba(255,255,255,0.1);border-top-color:#8b5cf6;border-radius:50%;margin:0 auto 20px;animation:spin 1s linear infinite;"></div>
           <p style="color:#a5a5ae;">Loading portfolio...</p>
         </div>
-        <!-- Portfolio content will be loaded here -->
         <div id="portfolioContent" style="display:none;"></div>
       </div>
     </div>
   </div>
 
-  <!-- ========== BACK TO TOP BUTTON (FIXED) ========== -->
+  <!-- ========== BACK TO TOP BUTTON ========== -->
   <button class="back-to-top" aria-label="Back to top">
     <span aria-hidden="true">↑</span>
   </button>
@@ -449,6 +569,24 @@
         <button class="cookie-btn cookie-btn-accept" id="acceptCookies">Accept All</button>
       </div>
     </div>
+  </div>
+
+  <!-- ====== STATIC FALLBACK FOR GEO (FIX 8) ====== -->
+  <noscript>
+    <style>
+      .hero-copy > * { opacity: 1 !important; transform: none !important; }
+      .hero-visual { opacity: 1 !important; scale: 1 !important; rotation: 0 !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+    </style>
+  </noscript>
+
+  <!-- ====== STATIC CONTENT FOR SEARCH ENGINES (FIX 8) ====== -->
+  <div style="display:none;" aria-hidden="true">
+    <h1>OPTIMAAYA - Performance Marketing &amp; AI Search Optimization Agency</h1>
+    <p>OPTIMAAYA is a leading performance marketing and AI search optimization agency. We help brands grow through strategic marketing, influencer campaigns, SEO, AEO, GEO, and AI visibility optimization.</p>
+    <p>Our services include performance marketing, influencer campaigns, viral content strategy, SEO/AEO/GEO optimization, AI visibility audits, CRM automation, analytics tracking, and creative direction.</p>
+    <p>We serve clients across India in lifestyle, fashion, food and beverage, cafes, restaurants, events, personal brands, local businesses, startups, and D2C brands.</p>
+    <p>OPTIMAAYA combines data-driven strategy with creative excellence to deliver measurable growth and brand recall for ambitious businesses.</p>
   </div>
 
   <!-- Spin animation for loader -->
