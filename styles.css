@@ -1042,5 +1042,177 @@ html, body {
     transform: scale(0.7);
   }
 }
+/* =========================
+   WHY CHOOSE SECTION (FIX 3 - OPTION B)
+========================= */
+
+.why-choose {
+  border-top: 1px solid var(--line);
+  padding: 90px 0;
+}
+
+.choose-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.choose-card {
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  transition: all 0.3s ease;
+}
+
+.choose-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(112, 154, 255, 0.35);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.choose-card h3 {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  font-family: 'Playfair Display', serif;
+}
+
+.choose-card p {
+  color: #a5a5ae;
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* =========================
+   CONTACT DETAILS (FIX 9)
+========================= */
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 25px 0 30px;
+}
+
+.contact-detail-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #b4b4bd;
+  font-size: 15px;
+}
+
+.contact-detail-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.contact-detail-item a {
+  color: #b4b4bd;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.contact-detail-item a:hover {
+  color: #fff;
+}
+
+/* =========================
+   FOOTER CONTACT INFO (FIX 9)
+========================= */
+
+.footer-contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 30px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin: 10px 0 20px;
+  gap: 20px;
+}
+
+.footer-contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.footer-contact-label {
+  font-size: 10px;
+  color: #63636d;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.footer-contact-item a,
+.footer-contact-item span {
+  color: #aaaab3;
+  font-size: 13px;
+  transition: color 0.3s ease;
+}
+
+.footer-contact-item a:hover {
+  color: #fff;
+}
+
+/* =========================
+   RESPONSIVE FOR NEW SECTIONS
+========================= */
+
+@media (max-width: 760px) {
+  .choose-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .choose-card {
+    padding: 24px;
+  }
+  
+  .choose-card h3 {
+    font-size: 18px;
+  }
+  
+  .footer-contact {
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px 0;
+  }
+  
+  .footer-contact-item {
+    align-items: center;
+  }
+  
+  .contact-details {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 430px) {
+  .why-choose {
+    padding: 60px 0;
+  }
+  
+  .choose-card {
+    padding: 20px;
+  }
+  
+  .choose-card h3 {
+    font-size: 16px;
+  }
+  
+  .choose-card p {
+    font-size: 13px;
+  }
+  
+  .contact-detail-item {
+    font-size: 13px;
+  }
+}
 /* Add Playfair Display font */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
