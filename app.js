@@ -263,20 +263,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- FOOTER YEAR ---
   document.querySelector("#year").textContent = new Date().getFullYear();
-    // --- SMOOTH SCROLL TO TOP ---
-  const backToTopLink = document.querySelector('.footer-bottom a[href="#top"]');
-  if (backToTopLink) {
-    backToTopLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-  const homeLink = document.querySelector('.brand[href="#top"]');
-  if (homeLink) {
-    homeLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
 });
