@@ -263,4 +263,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- FOOTER YEAR ---
   document.querySelector("#year").textContent = new Date().getFullYear();
+    // --- BACK TO TOP (FIXED - WORKS FOR BOTH FOOTER LINK AND FLOATING BUTTON) ---
+  const backToTopBtn = document.querySelector('.back-to-top');
+  const backToTopFooter = document.querySelector('.back-to-top-footer');
+
+  // Function to scroll to top smoothly
+  function scrollToTop(e) {
+    if (e) e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  // Floating back-to-top button (show/hide on scroll)
+  if (backToTopBtn) {
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 500) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    backToTopBtn.addEventListener('click', scrollToTop);
+  }
+
+  // Footer back-to-top link
+  if (backToTopFooter) {
+    backToTopFooter.addEventListener('click', scrollToTop);
+  }
+
+  // Also fix any existing #top links in the footer
+  document.querySelectorAll('.footer-bottom a[href="#top"]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  });
 });
