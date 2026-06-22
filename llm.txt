@@ -1,0 +1,120 @@
+# OPTIMAAYA - Project Context for AI
+
+## Project Overview
+OPTIMAAYA is a performance marketing and AI search growth agency website. It helps businesses increase visibility across both traditional search engines (Google) and emerging AI platforms (ChatGPT, Gemini, Claude, Perplexity).
+
+## Tech Stack
+- HTML5
+- CSS3 (Custom with CSS variables)
+- JavaScript (Vanilla JS)
+- EmailJS for contact form email delivery
+- GSAP for animations
+- Cloudflare Pages for hosting
+
+## Website Sections
+1. **Hero** - Main landing section with tagline and CTA
+2. **About** - Who we are and what we do
+3. **Services** - 8 service cards (Performance Marketing, Influencer, SEO/AEO/GEO, etc.)
+4. **AI Search** - AI visibility features and radar visualization
+5. **Why OPTIMAAYA** - 6 key differentiators
+6. **Industries** - 8 industry categories we serve
+7. **Process** - 4-step growth methodology
+8. **Contact** - Form with EmailJS integration
+9. **Overview Popup** - Portfolio content loaded from portfolio.html
+
+## Key Files
+- `index.html` - Main page structure
+- `styles.css` - All styling
+- `app.js` - All JavaScript functionality
+- `portfolio.html` - Portfolio content loaded in Overview popup
+
+## Design Guidelines
+- **Colors**: Dark theme (#0b0b0b background, #a5a5ae muted)
+- **Primary colors**: #3b82f6 (blue), #7c3aed (purple)
+- **Gradient**: Linear gradient from blue to purple (#67a7ff → #8b5cf6 → #c084fc)
+- **Fonts**: Manrope (headings), DM Sans (body)
+- **Glass effect**: Backdrop blur, subtle borders
+- **Responsive**: Mobile-first, breakpoints at 1050px, 760px, 430px
+
+## Code Style Preferences
+- Use CSS variables for colors and fonts
+- Keep JavaScript vanilla (no jQuery)
+- Use `defer` for script loading
+- GSAP animations should be disabled for users who prefer reduced motion
+- Semantic HTML with appropriate ARIA labels
+
+## Important Files to Know
+
+### index.html
+- Main landing page
+- Contains all sections visible on the site
+- Includes Overview popup modal
+- Uses `data-static-form-name="contact"` for Cloudflare Forms
+
+### styles.css
+- All styles in one file
+- Uses CSS variables
+- Mobile-first responsive design
+- Includes glass-morphism effects
+- GSAP animation support
+
+### app.js
+- Handles all interactivity
+- GSAP animations
+- Counter animations on scroll
+- EmailJS contact form
+- Overview popup loading from portfolio.html
+- Mobile menu toggle
+
+### portfolio.html
+- Loaded into Overview popup
+- Contains full agency portfolio
+- Styled with inline styles to work in popup
+
+## Common Tasks
+
+### Adding a new service card
+1. Copy an existing `.service-card` in index.html
+2. Update title, description, and icon
+3. Add appropriate `.card-tags`
+4. Style is automatically handled
+
+### Changing the hero section
+- Edit `.hero` section in index.html
+- Update headline, subheadline, and CTA buttons
+- Images are from Unsplash
+
+### Modifying colors
+- Update CSS variables in `:root`
+- Main colors: --blue (#3b82f6), --purple (#7c3aed)
+- Gradient: --grad
+
+### Updating contact form
+- EmailJS credentials in app.js:
+  - Public Key: `5fB6irNIKc806LulR`
+  - Service ID: `service_o0kcmbr`
+  - Template ID: `template_ai7g6oe`
+
+## Deployment
+- Hosted on Cloudflare Pages
+- Deploy via git push to main branch
+- Auto-deploys after push
+
+## Recent Fixes
+- Overview popup close button moved to bottom for better mobile visibility
+- Contact form uses EmailJS for reliable email delivery
+- Smooth scroll to top for back-to-top links
+
+## AI Assistant Instructions
+1. **When helping with code**: Always check the latest files shown in the conversation
+2. **For CSS changes**: Use CSS variables if available
+3. **For JavaScript**: Keep it vanilla, no external libraries unless specified
+4. **For design**: Maintain dark theme with blue/purple gradient accents
+5. **Mobile responsiveness**: Always test your solution on mobile devices
+6. **Form submissions**: Use EmailJS with the provided credentials
+7. **Animations**: Use GSAP only if already being used in the project
+8. **Content updates**: Focus on the sections mentioned above
+
+## Contact
+- Email: optimaaya@gmail.com
+- Website: https://optimaaya.pages.dev
