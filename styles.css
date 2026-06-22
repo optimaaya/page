@@ -344,32 +344,45 @@ h1,h2,h3,p{margin-top:0}.hero h1{font:700 clamp(55px,6vw,88px)/.98 var(--font);l
     }
   }
   
- .overview-modal-header {
-  padding: 20px 20px 16px 20px;
-  min-height: 70px;
-  border-radius: 20px 20px 0 0;
-  overflow: visible !important;
-}
+  .overview-modal-header {
+    padding: 24px 20px 16px 20px;
+    min-height: 76px;
+    border-radius: 20px 20px 0 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #12131a;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    overflow: visible !important;
+  }
   
   .overview-modal-header h2 {
     font-size: 17px;
   }
   
-.overview-modal-header .modal-close {
-  width: 36px;
-  height: 36px;
-  font-size: 20px;
-  position: relative;
-  top: 8px;
-  flex-shrink: 0;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-}
+  .overview-modal-header .modal-close {
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    position: relative;
+    top: 4px;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    margin-left: 12px;
+  }
+  
+  .overview-modal-header .modal-close:active {
+    background: rgba(255, 59, 59, 0.3);
+  }
   .overview-modal-body {
     padding: 24px 18px;
     max-height: calc(95vh - 60px);
