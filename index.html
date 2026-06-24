@@ -587,6 +587,367 @@
       to { transform: rotate(360deg); }
     }
   </style>
+<!-- Bird Leads Game Widget -->
+<style>
+    /* Floating Game Button */
+    .bird-game-float-btn {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #fbbf24, #f59e0b);
+        border-radius: 50%;
+        box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5);
+        cursor: pointer;
+        z-index: 9998;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        transition: all 0.3s ease;
+        border: 3px solid #fef3c7;
+        animation: birdFloat 3s ease-in-out infinite;
+        user-select: none;
+    }
+    
+    .bird-game-float-btn:hover {
+        transform: scale(1.15) rotate(5deg);
+        box-shadow: 0 12px 35px rgba(245, 158, 11, 0.7);
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+    }
+    
+    @keyframes birdFloat {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+    }
+    
+    /* Tooltip label */
+    .bird-game-float-btn::after {
+        content: "🐦 Bird Leads";
+        position: absolute;
+        right: 70px;
+        background: #1e293b;
+        color: #fbbf24;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: bold;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+        font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    
+    .bird-game-float-btn:hover::after {
+        opacity: 1;
+    }
+    
+    /* Popup Overlay */
+    .bird-game-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.75);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(5px);
+    }
+    
+    .bird-game-overlay.active {
+        display: flex;
+    }
+    
+    /* Popup Container */
+    .bird-game-popup {
+        background: #16213e;
+        border-radius: 25px;
+        padding: 20px;
+        position: relative;
+        max-width: 540px;
+        width: 95%;
+        box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+        animation: popIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        border: 2px solid #fbbf2430;
+    }
+    
+    @keyframes popIn {
+        from {
+            transform: scale(0.5) translateY(50px);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    /* Close Button */
+    .bird-game-close {
+        position: absolute;
+        top: -15px;
+        right: -15px;
+        width: 38px;
+        height: 38px;
+        background: #e11d48;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 5px 15px rgba(225, 29, 72, 0.5);
+        transition: all 0.2s;
+    }
+    
+    .bird-game-close:hover {
+        background: #f43f5e;
+        transform: scale(1.1) rotate(90deg);
+    }
+    
+    /* Responsive */
+    @media (max-width: 600px) {
+        .bird-game-float-btn {
+            width: 50px;
+            height: 50px;
+            bottom: 20px;
+            right: 20px;
+            font-size: 24px;
+        }
+        .bird-game-popup {
+            padding: 15px;
+            border-radius: 20px;
+        }
+    }
+</style>
 
+<!-- Floating Button -->
+<div class="bird-game-float-btn" id="birdGameBtn" title="Play Bird Leads!">
+    🐦
+</div>
+
+<!-- Game Popup -->
+<div class="bird-game-overlay" id="birdGameOverlay">
+    <div class="bird-game-popup" id="birdGamePopup">
+        <button class="bird-game-close" id="birdGameClose">✕</button>
+        
+        <!-- GAME CONTENT (from your working game) -->
+        <div style="text-align: center;">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 5px; color: #eee; font-weight: bold; flex-wrap: wrap; gap: 8px;">
+                <span style="font-size: 18px;">🐦 BIRD LEADS</span>
+                <span id="popupLeadsDisplay" style="background: #0f3460; padding: 6px 18px; border-radius: 30px; color: #f5c842; font-size: 20px;">⭐ 0</span>
+                <button id="popupRestartBtn" style="background: #e94560; border: none; color: white; font-weight: bold; font-size: 14px; padding: 8px 20px; border-radius: 30px; cursor: pointer;">↻ Restart</button>
+            </div>
+            <canvas id="popupGameCanvas" width="500" height="650" style="width: 100%; max-width: 500px; height: auto; aspect-ratio: 500/650; border-radius: 12px; background: #87CEEB; cursor: pointer; margin-top: 5px; border: 2px solid #0f3460;"></canvas>
+            <div style="color: #aaa; font-size: 13px; padding: 8px 0 0; text-align: center;">
+                🖱️ Click/Tap → Jump | <span style="color:#2ecc71;">🟢 Good +1</span> | <span style="color:#e74c3c;">🔴 Bad = 💀</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+(function() {
+    // ============ POPUP LOGIC ============
+    const floatBtn = document.getElementById('birdGameBtn');
+    const overlay = document.getElementById('birdGameOverlay');
+    const closeBtn = document.getElementById('birdGameClose');
+    const popup = document.getElementById('birdGamePopup');
+    
+    // Open popup
+    floatBtn.addEventListener('click', () => {
+        overlay.classList.add('active');
+        if (!window.birdGameStarted) {
+            startPopupGame();
+            window.birdGameStarted = true;
+        }
+    });
+    
+    // Close popup
+    closeBtn.addEventListener('click', () => {
+        overlay.classList.remove('active');
+    });
+    
+    // Close when clicking outside popup
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            overlay.classList.remove('active');
+        }
+    });
+    
+    // Close with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('active')) {
+            overlay.classList.remove('active');
+        }
+    });
+    
+    // ============ GAME LOGIC (Identical to your working game) ============
+    function startPopupGame() {
+        const canvas = document.getElementById('popupGameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreSpan = document.getElementById('popupLeadsDisplay');
+        const restartBtn = document.getElementById('popupRestartBtn');
+        
+        const W = 500, H = 650;
+        
+        let bird = { x: 80, y: 300, radius: 18, vy: 0, gravity: 0.3, jumpPower: -7 };
+        let badLeads = [], goodLeads = [];
+        let leads = 0, gameOver = false, frameCount = 0, spawnTimer = 0;
+        let animationId;
+        
+        function random(min, max) { return Math.random() * (max - min) + min; }
+        function randomInt(min, max) { return Math.floor(random(min, max + 1)); }
+        function getDistance(x1, y1, x2, y2) { return Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2)); }
+        
+        function resetGame() {
+            bird.y = 300; bird.vy = 0;
+            badLeads = []; goodLeads = [];
+            leads = 0; gameOver = false;
+            frameCount = 0; spawnTimer = 0;
+            scoreSpan.textContent = '⭐ 0';
+        }
+        
+        function spawnBadLead() {
+            if (badLeads.length > 10) return;
+            const size = 30 + random(0, 15);
+            badLeads.push({ x: W + 30, y: random(50, H-50), size, speed: 3 + random(0, 0.5) });
+        }
+        
+        function spawnGoodLead() {
+            if (goodLeads.length > 8) return;
+            const size = 20 + random(0, 10);
+            const colors = ['#f1c40f', '#2ecc71', '#3498db'];
+            const symbols = ['✦', '◆', '★'];
+            const idx = randomInt(0, 2);
+            goodLeads.push({ x: W + 30, y: random(60, H-60), size, symbol: symbols[idx], color: colors[idx], speed: 3 + random(0, 0.3), points: idx === 0 ? 1 : idx === 1 ? 2 : 3 });
+        }
+        
+        function jump() {
+            if (gameOver) { resetGame(); return; }
+            bird.vy = bird.jumpPower;
+        }
+        
+        function update() {
+            if (gameOver) return;
+            frameCount++; spawnTimer++;
+            bird.vy += bird.gravity; bird.y += bird.vy;
+            if (bird.y + bird.radius > H) { bird.y = H - bird.radius; gameOver = true; return; }
+            if (bird.y - bird.radius < 0) { bird.y = bird.radius; bird.vy = 0; }
+            
+            let badInterval = Math.max(40, 60 - Math.floor(leads / 5));
+            if (spawnTimer % badInterval === 0 && Math.random() < 0.7) spawnBadLead();
+            
+            let goodInterval = Math.max(35, 50 - Math.floor(leads / 5));
+            if (spawnTimer % goodInterval === 0 && Math.random() < 0.6) spawnGoodLead();
+            
+            for (let i = badLeads.length - 1; i >= 0; i--) {
+                let bad = badLeads[i]; bad.x -= bad.speed;
+                if (bad.x + bad.size < -20) { badLeads.splice(i, 1); continue; }
+                if (getDistance(bird.x, bird.y, bad.x, bad.y) < bird.radius + bad.size * 0.4) { gameOver = true; return; }
+            }
+            
+            for (let i = goodLeads.length - 1; i >= 0; i--) {
+                let good = goodLeads[i]; good.x -= good.speed;
+                if (good.x + good.size < -20) { goodLeads.splice(i, 1); continue; }
+                if (getDistance(bird.x, bird.y, good.x, good.y) < bird.radius + good.size * 0.4) {
+                    leads += good.points; scoreSpan.textContent = '⭐ ' + leads;
+                    goodLeads.splice(i, 1);
+                }
+            }
+        }
+        
+        function draw() {
+            ctx.clearRect(0, 0, W, H);
+            let gradient = ctx.createLinearGradient(0, 0, 0, H);
+            gradient.addColorStop(0, '#4facfe'); gradient.addColorStop(0.5, '#87CEEB'); gradient.addColorStop(1, '#b8e1fc');
+            ctx.fillStyle = gradient; ctx.fillRect(0, 0, W, H);
+            
+            for (let good of goodLeads) {
+                let rad = good.size * 0.5;
+                ctx.shadowColor = good.color; ctx.shadowBlur = 20;
+                ctx.beginPath(); ctx.arc(good.x, good.y, rad, 0, Math.PI * 2);
+                let grad = ctx.createRadialGradient(good.x-4, good.y-4, 2, good.x, good.y, rad);
+                grad.addColorStop(0, '#ffffff'); grad.addColorStop(0.5, good.color); grad.addColorStop(1, good.color);
+                ctx.fillStyle = grad; ctx.fill(); ctx.shadowBlur = 0;
+                ctx.font = `${rad * 0.9}px Arial`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+                ctx.fillStyle = '#ffffff'; ctx.shadowColor = 'rgba(0,0,0,0.3)'; ctx.shadowBlur = 5;
+                ctx.fillText(good.symbol, good.x, good.y + 1); ctx.shadowBlur = 0;
+            }
+            
+            for (let bad of badLeads) {
+                let rad = bad.size * 0.5;
+                ctx.shadowColor = '#ff0000'; ctx.shadowBlur = 15;
+                ctx.beginPath(); ctx.arc(bad.x, bad.y, rad, 0, Math.PI * 2);
+                let grad = ctx.createRadialGradient(bad.x-4, bad.y-4, 2, bad.x, bad.y, rad);
+                grad.addColorStop(0, '#ff6b6b'); grad.addColorStop(0.5, '#e74c3c'); grad.addColorStop(1, '#2d0a0a');
+                ctx.fillStyle = grad; ctx.fill(); ctx.shadowBlur = 0;
+                ctx.font = `${rad * 0.8}px Arial`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+                ctx.fillStyle = '#ffffff'; ctx.shadowColor = 'rgba(255,0,0,0.3)'; ctx.shadowBlur = 8;
+                ctx.fillText('✖', bad.x, bad.y + 1); ctx.shadowBlur = 0;
+            }
+            
+            ctx.shadowColor = 'rgba(0,0,0,0.2)'; ctx.shadowBlur = 10;
+            ctx.beginPath(); ctx.arc(bird.x, bird.y, bird.radius, 0, Math.PI * 2);
+            let birdGrad = ctx.createRadialGradient(bird.x-6, bird.y-8, 4, bird.x, bird.y, bird.radius);
+            birdGrad.addColorStop(0, '#ffd93d'); birdGrad.addColorStop(0.6, '#f6b93b'); birdGrad.addColorStop(1, '#e58e26');
+            ctx.fillStyle = birdGrad; ctx.fill(); ctx.shadowBlur = 0;
+            ctx.strokeStyle = '#b87c1e'; ctx.lineWidth = 2; ctx.stroke();
+            
+            ctx.beginPath(); ctx.arc(bird.x+7, bird.y-5, 6, 0, Math.PI*2); ctx.fillStyle = '#ffffff'; ctx.fill();
+            ctx.strokeStyle = '#222222'; ctx.lineWidth = 1.5; ctx.stroke();
+            ctx.beginPath(); ctx.arc(bird.x+10, bird.y-7, 3, 0, Math.PI*2); ctx.fillStyle = '#1e272e'; ctx.fill();
+            
+            ctx.fillStyle = '#e67e22'; ctx.beginPath();
+            ctx.moveTo(bird.x+18, bird.y-2); ctx.lineTo(bird.x+30, bird.y+2); ctx.lineTo(bird.x+18, bird.y+8);
+            ctx.closePath(); ctx.fill(); ctx.strokeStyle = '#a05a15'; ctx.lineWidth = 1; ctx.stroke();
+            
+            let wingAngle = Math.sin(frameCount * 0.15) * 0.3 + 0.3;
+            ctx.fillStyle = '#d35400'; ctx.beginPath();
+            ctx.ellipse(bird.x-8, bird.y-2, 14, 8*wingAngle, -0.2, 0, Math.PI*2); ctx.fill();
+            ctx.strokeStyle = '#a04000'; ctx.lineWidth = 1.2; ctx.stroke();
+            
+            if (gameOver) {
+                ctx.shadowBlur = 0; ctx.fillStyle = 'rgba(0,0,0,0.6)'; ctx.fillRect(0, 0, W, H);
+                ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+                ctx.shadowColor = '#ff0000'; ctx.shadowBlur = 30;
+                ctx.font = 'bold 46px Arial'; ctx.fillStyle = '#ff6b6b';
+                ctx.fillText('💀 GAME OVER', W/2, H/2-50); ctx.shadowBlur = 0;
+                ctx.font = '20px Arial'; ctx.fillStyle = '#f1f2f6';
+                ctx.fillText('Click / Tap to restart', W/2, H/2+30);
+                ctx.font = 'bold 26px Arial'; ctx.fillStyle = '#f5c842';
+                ctx.fillText(`Leads: ${leads}`, W/2, H/2+90);
+            }
+            
+            ctx.shadowBlur = 0; ctx.font = 'bold 24px Arial'; ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+            ctx.fillStyle = 'rgba(0,0,0,0.3)'; ctx.fillText('⭐ ' + leads, 14, 12);
+            ctx.fillStyle = '#f5c842'; ctx.fillText('⭐ ' + leads, 12, 10);
+        }
+        
+        function gameLoop() {
+            update(); draw();
+            animationId = requestAnimationFrame(gameLoop);
+        }
+        
+        canvas.addEventListener('click', (e) => { e.preventDefault(); jump(); });
+        canvas.addEventListener('touchstart', (e) => { e.preventDefault(); jump(); });
+        restartBtn.addEventListener('click', (e) => { e.stopPropagation(); resetGame(); });
+        document.addEventListener('keydown', function spaceJump(e) {
+            if (e.key === ' ' || e.key === 'Space') { e.preventDefault(); jump(); }
+        });
+        
+        resetGame();
+        gameLoop();
+    }
+})();
+</script>
 </body>
 </html>
